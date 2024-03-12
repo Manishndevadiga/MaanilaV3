@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f0f0;
+        }
+
+        .heading{
+    width:500px;
+    text-align:center;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 50px;
+    font-weight: bold;
+    color:rgb(182, 208, 54);
+  }
+
+   .navigation, .navigation1{
+    height:90px;
+    background-color:#0C359E;
+    width:100%;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   }
+
+   .navigation{
+    background-color:#d6dcea;
+   }
+
+   .nav ,.nav1{
+    color:white;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(12, 141, 12);
+    border: none;
+   }
+
+   .nav1{
+   position: absolute;
+   width:100px;
+   left: 100px;
+   top: 20px;
+   padding: 15px;
+   }
+
+   .nav:hover,.nav1:hover{
+    background-color: rgb(12, 117, 12);
+   }
+    </style>
+</head>
+<body>
+
+
+    <a href="/home"><button class="nav1">Home</button></a>
+
+  <div class="navigation1"> 
+    <div>  <div class="heading">Jai Shree Ram</div></div>
+  </div>
+
+    <div class="navigation"> 
+       <a href="/download"><button class="nav">User Details Excel Sheet</button></a>
+       <a href="index.html"><button class="nav">Update Issue Budget</button></a> 
+    </div>
+    
+</body>
+</html>
