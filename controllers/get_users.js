@@ -8,13 +8,30 @@ module.exports = {
     try {
       const groupName = req.query.name;
 
-      // const groups = await Payments.find({ groupname: groupName });
-
       console.log("groupName:", groupName);
 
       const users = await Peoples.find({ group: groupName });
 
-      res.send(users);
+      ///////////////////////////////////////////////////////
+
+      const PaymentData = await Payments.find({ groupname: groupName });
+
+      let totalNetAmount = 0;
+
+      PaymentData.forEach((payment) => {
+        totalNetAmount += payment.net_amount;
+      });
+
+      console.log("totalNetAmount:", totalNetAmount);
+
+      ///////////////////////////////////////////////////////////
+
+      const responseData = {
+        users: users,
+        totalNetAmount: totalNetAmount,
+      };
+
+      res.send(responseData);
     } catch (error) {
       console.error("Error fetching users:", error);
       res.status(500).json({ error: "Server error" });

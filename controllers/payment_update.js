@@ -23,11 +23,15 @@ module.exports = {
       try {
         const user = await Payments.findOne({ name: username });
 
-        console.log(user);
-
         if (!user) {
           return res.status(404).json({ message: "User not found" });
         }
+
+        console.log(typeof user.net_amount);
+
+        console.log(typeof amount);
+
+        user.net_amount = user.net_amount + amount;
 
         user.donation.push({
           amount: amount,
@@ -66,6 +70,8 @@ module.exports = {
         console.log("issued Monthly Amount:", issuedMonthlyAmt);
 
         if (netMonthlyAmount >= issuedMonthlyAmt) {
+          user.net_amount = user.net_amount + amount;
+
           user.donation.push({
             amount: amount,
             timestamp: new Date(),
@@ -85,6 +91,8 @@ module.exports = {
         const pendingAmt = issuedMonthlyAmt - netMonthlyAmount;
 
         if (amount > pendingAmt) {
+          user.net_amount = user.net_amount + amount;
+
           const remainingAmt = amount - pendingAmt;
 
           user.monthly_pay[year].push({
@@ -99,6 +107,8 @@ module.exports = {
         }
 
         if (amount <= pendingAmt) {
+          user.net_amount = user.net_amount + amount;
+
           user.monthly_pay[year].push({
             amount: amount,
             timestamp: new Date(),
@@ -136,6 +146,8 @@ module.exports = {
         console.log("issued Monthly Amount:", issuedYearlyAmt);
 
         if (netYearlyAmount >= issuedYearlyAmt) {
+          user.net_amount = user.net_amount + amount;
+
           user.donation.push({
             amount: amount,
             timestamp: new Date(),
@@ -153,6 +165,8 @@ module.exports = {
         const pendingYearlyAmt = issuedYearlyAmt - netYearlyAmount;
 
         if (amount > pendingYearlyAmt) {
+          user.net_amount = user.net_amount + amount;
+
           const remainingYearlyAmt = amount - pendingYearlyAmt;
 
           user.yearly_pay[year].push({
@@ -167,6 +181,8 @@ module.exports = {
         }
 
         if (amount <= pendingYearlyAmt) {
+          user.net_amount = user.net_amount + amount;
+
           user.yearly_pay[year].push({
             amount: amount,
             timestamp: new Date(),

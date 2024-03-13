@@ -23,6 +23,7 @@ const paymentSchema = new Schema({
   },
   net_amount: {
     type: Number,
+    default: 0,
   },
   monthly_pay: {
     2022: [
